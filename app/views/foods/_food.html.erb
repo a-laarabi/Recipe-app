@@ -1,0 +1,10 @@
+<div id="<%= dom_id food %>">
+  <% if food.user == current_user %>
+    <tr>
+      <td><%= food.name%></td>
+      <td><%= food.measurement_unit %></td>
+      <td>$<%= food.price %></td>
+      <td><%= button_to "Delete", food, method: :delete, class:"btn btn-outline-danger btn-sm" %></td>
+    </tr>
+  <% end %>
+</div>
