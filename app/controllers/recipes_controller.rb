@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource
   before_action :set_recipe, only: %i[show edit update destroy]
 
   def index
@@ -7,23 +7,9 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by(id: params[:id])
   end
 
-  def show; end
-
   def new
-    @recipes = current_user.recipes.includes(:foods)
+    @recipe = Recipe.new
   end
-
-  def destroy
-    @recipe = Recipe.find_by(id: params[:id])
-    @recipe.destroy
-
-    respond_to do |format|
-      format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  def edit; end
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
@@ -37,6 +23,29 @@ class RecipesController < ApplicationController
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
+      redirect_to @recipe
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    redirect_to recipes_path
   end
 
   private

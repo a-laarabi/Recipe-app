@@ -11,7 +11,7 @@
           <h5><%= r.name%></h5>
           <% end %>
           <div>
-            <%if can? :destroy, r %> <%= button_to "Delete", recipe_path(r.id),
+          <%if can? :destroy, r %><%= button_to "Delete", recipe_path(r.id),
             method: :delete, class: "btn btn-outline-danger"%> <% end %>
           </div>
         </div>
