@@ -46,7 +46,6 @@ class RecipeFoodsController < ApplicationController
     redirect_to recipe_path(@recipe_food.recipe_id)
   end
 
-
   private
 
   def set_recipe_food
