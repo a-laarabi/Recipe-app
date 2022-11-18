@@ -25,7 +25,7 @@ development:
   <<: *default
   database: Recipe_app_development
   username: postgres
-  port: 5433
+  port: 5432
   host: 127.0.0.1
   password: 1234
 
@@ -63,7 +63,7 @@ test:
   <<: *default
   database: Recipe_app_test
   username: postgres
-  port: 5433
+  port: 5432
   host: 127.0.0.1
   password: 1234
 
